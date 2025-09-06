@@ -1,63 +1,33 @@
 # app.py
 import os
-import sqlite3
 import json
 import re
-import difflib
 from functools import wraps
 from io import BytesIO
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
-from PIL import Image, ImageOps, ImageFilter
+from PIL import Image, ImageOps
 import pytesseract
 
-def detect_allergens_from_text(raw_text):
-    """
-    Scan OCR text and detect allergens.
-    Adds severity levels: high, medium, low
-    """
-    raw_lower = raw_text.lower()
-    detected = []
+import psycopg2
+import psycopg2.extras
 
-    for allergen_key, keywords in PREDEFINED_ALLERGENS.items():
-        for kw in keywords:
-            if kw in raw_lower:
-                severity = "high"
-                detected.append({"allergen": allergen_key, "matched": kw, "severity": severity})
-                break  # stop after first match for this allergen
-
-    # Medium risk: "may contain" or "produced in facility"
-    if "may contain" in raw_lower or "produced in a facility" in raw_lower:
-        for allergen_key in PREDEFINED_ALLERGENS.keys():
-            detected.append({"allergen": allergen_key, "matched": "may contain/produced in facility", "severity": "medium"})
-
-    # Low risk: "free from"
-    if "free from" in raw_lower or "-free" in raw_lower:
-        # Example: "gluten-free"
-        for allergen_key in PREDEFINED_ALLERGENS.keys():
-            for kw in PREDEFINED_ALLERGENS[allergen_key]:
-                if f"{kw} free" in raw_lower or f"{kw}-free" in raw_lower:
-                    detected.append({"allergen": allergen_key, "matched": f"{kw}-free", "severity": "low"})
-
-    return detected
-
-
-
-# If tesseract binary not in PATH, uncomment and set the path:
-# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
+# ---------------- Config ----------------
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(APP_DIR, 'allergy_app.db')
+DATABASE_URL = os.environ.get("DATABASE_URL")  # e.g. from Supabase or Neon
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable is required (Supabase/Neon connection string).")
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
+app.secret_key = os.environ.get('SECRET_KEY', 'replace-this-with-a-secure-secret')
+
 # Make helper functions available inside all templates
 @app.context_processor
 def inject_helpers():
     return dict(get_user_by_id=get_user_by_id)
-app.secret_key = os.environ.get('SECRET_KEY', 'replace-this-with-a-secure-secret')
 
-# Predefined allergen keywords -> synonyms/keywords used for matching OCR text
+# ---------------- Allergen config ----------------
 PREDEFINED_ALLERGENS = {
     "milk": ["milk", "lactose", "whey", "casein", "sodium caseinate", "caseinate", "milk protein", "milk solids"],
     "egg": ["egg", "eggs", "albumen", "albumin", "egg white", "egg yolk", "ovomucoid"],
@@ -73,7 +43,6 @@ PREDEFINED_ALLERGENS = {
     "celery": ["celery", "celeriac"],
     "lupin": ["lupin", "lupine"]
 }
-
 
 DISPLAY_NAME = {
     "milk": "Milk / Dairy",
@@ -91,227 +60,301 @@ DISPLAY_NAME = {
     "lupin": "Lupin"
 }
 
-# ---------------- DB helpers ----------------
+# ---------------- Postgres helpers ----------------
 def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
+    """
+    Returns a psycopg2 connection. Caller should close() it.
+    """
+    # For Supabase you may need sslmode=require; psycopg2 accepts DATABASE_URL with query params,
+    # but enforce sslmode to be safe:
+    conn = psycopg2.connect(DATABASE_URL, sslmode="require")
     return conn
-# ---------- Additional DB helpers (paste below existing helpers) ----------
+
+def dict_from_row(row):
+    if row is None:
+        return None
+    return dict(row)
+
+# ---------------- DB operations (Postgres versions) ----------------
 def get_user_by_id(user_id):
     conn = get_db_connection()
-    row = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+    row = cur.fetchone()
+    cur.close()
     conn.close()
     return dict(row) if row else None
 
 def update_user_allergies(user_id, allergies_list):
     conn = get_db_connection()
-    conn.execute("UPDATE users SET allergies = ? WHERE id = ?", (json.dumps(allergies_list), user_id))
+    cur = conn.cursor()
+    cur.execute("UPDATE users SET allergies = %s WHERE id = %s", (json.dumps(allergies_list), user_id))
     conn.commit()
+    cur.close()
     conn.close()
 
 def get_all_feedback(limit=200):
     conn = get_db_connection()
-    rows = conn.execute("SELECT * FROM feedback ORDER BY timestamp DESC LIMIT ?", (limit,)).fetchall()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT * FROM feedback ORDER BY timestamp DESC LIMIT %s", (limit,))
+    rows = cur.fetchall()
+    cur.close()
     conn.close()
     return [dict(r) for r in rows]
 
 def get_feedback_by_user(username, limit=200):
     conn = get_db_connection()
-    rows = conn.execute("SELECT * FROM feedback WHERE username = ? ORDER BY timestamp DESC LIMIT ?", (username, limit)).fetchall()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT * FROM feedback WHERE username = %s ORDER BY timestamp DESC LIMIT %s", (username, limit))
+    rows = cur.fetchall()
+    cur.close()
     conn.close()
     return [dict(r) for r in rows]
 
 def get_scan_history_by_user(username, limit=200):
     conn = get_db_connection()
-    rows = conn.execute("SELECT * FROM scan_history WHERE username = ? ORDER BY timestamp DESC LIMIT ?", (username, limit)).fetchall()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT * FROM scan_history WHERE username = %s ORDER BY timestamp DESC LIMIT %s", (username, limit))
+    rows = cur.fetchall()
+    cur.close()
     conn.close()
     return [dict(r) for r in rows]
 
+# ---------------- init DB (creates tables if missing) ----------------
 def init_db():
+    """
+    Creates required tables if they don't exist and seeds some data.
+    Safe to run at startup.
+    """
     conn = get_db_connection()
     cur = conn.cursor()
+    # Use JSONB for allergies
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        username TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        full_name TEXT,
+        allergies JSONB DEFAULT '[]'
+    );
+    """)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS safe_alternatives (
+        id SERIAL PRIMARY KEY,
+        allergen TEXT NOT NULL,
+        alternative TEXT NOT NULL
+    );
+    """)
 
-    # existing users table (keep as-is)
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL,
-            full_name TEXT,
-            allergies TEXT DEFAULT '[]'  -- JSON array of allergen keys
-        );
-    ''')
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS harmful_ingredients (
+        id SERIAL PRIMARY KEY,
+        ingredient TEXT NOT NULL UNIQUE,
+        weight INTEGER NOT NULL
+    );
+    """)
 
-    # Safe alternatives table
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS safe_alternatives (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            allergen TEXT NOT NULL,
-            alternative TEXT NOT NULL
-        );
-    ''')
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS predictive_risks (
+        id SERIAL PRIMARY KEY,
+        food_item TEXT NOT NULL,
+        possible_allergen TEXT NOT NULL
+    );
+    """)
 
-    # Harmful ingredients for health score (weight = penalty points)
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS harmful_ingredients (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ingredient TEXT NOT NULL UNIQUE,
-            weight INTEGER NOT NULL
-        );
-    ''')
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS feedback (
+        id SERIAL PRIMARY KEY,
+        username TEXT,
+        product_name TEXT,
+        reaction TEXT,
+        notes TEXT,
+        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    """)
 
-    # Predictive risk rules (food item -> possible hidden allergen)
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS predictive_risks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            food_item TEXT NOT NULL,
-            possible_allergen TEXT NOT NULL
-        );
-    ''')
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS scan_history (
+        id SERIAL PRIMARY KEY,
+        username TEXT,
+        product_name TEXT,
+        ingredients TEXT,
+        detected_allergens TEXT,
+        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    """)
 
-    # Community feedback
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS feedback (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
-            product_name TEXT,
-            reaction TEXT,
-            notes TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
-    ''')
-
-    # Scan history
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS scan_history (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT,
-            product_name TEXT,
-            ingredients TEXT,
-            detected_allergens TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
-    ''')
-
-    # Hospitals (optional) - for emergency guidance
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS hospitals (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            pincode TEXT,
-            address TEXT,
-            phone TEXT
-        );
-    ''')
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS hospitals (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        pincode TEXT,
+        address TEXT,
+        phone TEXT
+    );
+    """)
 
     conn.commit()
 
-    # --- seed small sample data (INSERT OR IGNORE style) ---
-    # Safe alternatives
-    seed_alt = [
-        ("peanut", "Almond butter"),
-        ("peanut", "Sunflower seed butter"),
-        ("milk", "Soy milk"),
-        ("milk", "Oat milk"),
-        ("wheat", "Rice flour"),
-        ("gluten", "Corn flour")
-    ]
-    cur.executemany("INSERT INTO safe_alternatives (allergen, alternative) VALUES (?, ?)", seed_alt)
-
-    # Harmful ingredients (weight = penalty)
-    seed_harmful = [
-        ("sugar", 20),
-        ("high fructose corn syrup", 25),
-        ("sodium benzoate", 15),
-        ("potassium sorbate", 12),
-        ("trans fat", 30),
-        ("partially hydrogenated", 30),
-        ("artificial sweetener", 15),
-        ("monosodium glutamate", 10)
-    ]
-    for ing, w in seed_harmful:
-        try:
-            cur.execute("INSERT INTO harmful_ingredients (ingredient, weight) VALUES (?, ?)", (ing, w))
-        except Exception:
-            pass
-
-    # Predictive rules
-    seed_rules = [
-        ("chocolate", "peanut"),
-        ("chocolate", "milk"),
-        ("ice cream", "milk"),
-        ("soy sauce", "gluten"),
-        ("cake", "egg")
-    ]
-    for fi, pa in seed_rules:
-        cur.execute("INSERT INTO predictive_risks (food_item, possible_allergen) VALUES (?, ?)", (fi, pa))
-
-    # Sample hospital
+    # Seed some data safely (try/except to skip duplicates)
     try:
-        cur.execute("INSERT INTO hospitals (name, pincode, address, phone) VALUES (?, ?, ?, ?)",
+        seed_alt = [
+            ("peanut", "Almond butter"),
+            ("peanut", "Sunflower seed butter"),
+            ("milk", "Soy milk"),
+            ("milk", "Oat milk"),
+            ("wheat", "Rice flour"),
+            ("gluten", "Corn flour")
+        ]
+        for a, alt in seed_alt:
+            try:
+                cur.execute("INSERT INTO safe_alternatives (allergen, alternative) VALUES (%s, %s)", (a, alt))
+            except psycopg2.IntegrityError:
+                conn.rollback()
+    except Exception:
+        conn.rollback()
+
+    try:
+        seed_harmful = [
+            ("sugar", 20),
+            ("high fructose corn syrup", 25),
+            ("sodium benzoate", 15),
+            ("potassium sorbate", 12),
+            ("trans fat", 30),
+            ("partially hydrogenated", 30),
+            ("artificial sweetener", 15),
+            ("monosodium glutamate", 10)
+        ]
+        for ing, w in seed_harmful:
+            try:
+                cur.execute("INSERT INTO harmful_ingredients (ingredient, weight) VALUES (%s, %s) ON CONFLICT (ingredient) DO NOTHING", (ing, w))
+            except Exception:
+                conn.rollback()
+    except Exception:
+        conn.rollback()
+
+    try:
+        seed_rules = [
+            ("chocolate", "peanut"),
+            ("chocolate", "milk"),
+            ("ice cream", "milk"),
+            ("soy sauce", "gluten"),
+            ("cake", "egg")
+        ]
+        for fi, pa in seed_rules:
+            cur.execute("INSERT INTO predictive_risks (food_item, possible_allergen) VALUES (%s, %s) ON CONFLICT DO NOTHING", (fi, pa))
+    except Exception:
+        conn.rollback()
+
+    try:
+        cur.execute("INSERT INTO hospitals (name, pincode, address, phone) VALUES (%s, %s, %s, %s)",
                     ("City General Hospital", "700091", "MG Road, Kolkata", "+91-33-12345678"))
     except Exception:
-        pass
+        conn.rollback()
 
     conn.commit()
+    cur.close()
     conn.close()
 
-
+# Initialize DB on startup
 init_db()
 
+# ---------------- Utility features ----------------
 def get_safe_alternatives(allergen):
     conn = get_db_connection()
-    cur = conn.execute("SELECT alternative FROM safe_alternatives WHERE allergen = ?", (allergen.lower(),))
+    cur = conn.cursor()
+    cur.execute("SELECT alternative FROM safe_alternatives WHERE allergen = %s", (allergen.lower(),))
     rows = cur.fetchall()
+    cur.close()
     conn.close()
-    return [r['alternative'] for r in rows]
+    return [r[0] for r in rows]
 
 def compute_health_score(ingredients_text):
-    # returns dict {score: int, found: [(ingredient, weight), ...]}
+    """
+    returns dict {score: int, found: [(ingredient, weight), ...]}
+    """
     conn = get_db_connection()
-    cur = conn.execute("SELECT ingredient, weight FROM harmful_ingredients")
+    cur = conn.cursor()
+    cur.execute("SELECT ingredient, weight FROM harmful_ingredients")
     rows = cur.fetchall()
+    cur.close()
     conn.close()
     text = (ingredients_text or "").lower()
     score = 100
     found = []
     for r in rows:
-        ing = r['ingredient'].lower()
+        ing = r[0].lower()
+        w = int(r[1])
         if ing in text:
-            score -= int(r['weight'])
-            found.append((ing, int(r['weight'])))
+            score -= w
+            found.append((ing, w))
     score = max(0, score)
     return {"score": score, "found": found}
 
 def get_predictive_allergens_from_text(text):
-    # checks predictive_risks.food_item presence in OCR text
     conn = get_db_connection()
-    cur = conn.execute("SELECT food_item, possible_allergen FROM predictive_risks")
+    cur = conn.cursor()
+    cur.execute("SELECT food_item, possible_allergen FROM predictive_risks")
     rows = cur.fetchall()
+    cur.close()
     conn.close()
     text_lower = (text or "").lower()
     preds = set()
     for r in rows:
-        if r['food_item'].lower() in text_lower:
-            preds.add(r['possible_allergen'])
+        if r[0].lower() in text_lower:
+            preds.add(r[1])
     return list(preds)
 
 def add_feedback(username, product_name, reaction, notes=""):
     conn = get_db_connection()
-    conn.execute("INSERT INTO feedback (username, product_name, reaction, notes) VALUES (?, ?, ?, ?)",
-                 (username, product_name, reaction, notes))
+    cur = conn.cursor()
+    cur.execute("INSERT INTO feedback (username, product_name, reaction, notes) VALUES (%s, %s, %s, %s)",
+                (username, product_name, reaction, notes))
     conn.commit()
+    cur.close()
     conn.close()
 
 def save_scan_history(username, product_name, ingredients, detected_allergens):
     conn = get_db_connection()
-    conn.execute("INSERT INTO scan_history (username, product_name, ingredients, detected_allergens) VALUES (?, ?, ?, ?)",
-                 (username, product_name, ingredients, ",".join(detected_allergens)))
+    cur = conn.cursor()
+    detected = ",".join(detected_allergens) if isinstance(detected_allergens, (list, tuple)) else str(detected_allergens)
+    cur.execute("INSERT INTO scan_history (username, product_name, ingredients, detected_allergens) VALUES (%s, %s, %s, %s)",
+                (username, product_name, ingredients, detected))
     conn.commit()
+    cur.close()
     conn.close()
 
+# ---------------- Allergen detection ----------------
+def detect_allergens_from_text(raw_text):
+    """
+    Scan OCR text and detect allergens.
+    Adds severity levels: high, medium, low
+    """
+    raw_lower = (raw_text or "").lower()
+    detected = []
 
-# ---------------- auth helpers ----------------
+    for allergen_key, keywords in PREDEFINED_ALLERGENS.items():
+        for kw in keywords:
+            if kw in raw_lower:
+                severity = "high"
+                detected.append({"allergen": allergen_key, "matched": kw, "severity": severity})
+                break  # stop after first match for this allergen
+
+    # Medium risk: "may contain" or "produced in facility"
+    if "may contain" in raw_lower or "produced in a facility" in raw_lower:
+        for allergen_key in PREDEFINED_ALLERGENS.keys():
+            detected.append({"allergen": allergen_key, "matched": "may contain/produced in facility", "severity": "medium"})
+
+    # Low risk: "free from"
+    if "free from" in raw_lower or "-free" in raw_lower:
+        for allergen_key in PREDEFINED_ALLERGENS.keys():
+            for kw in PREDEFINED_ALLERGENS[allergen_key]:
+                if f"{kw} free" in raw_lower or f"{kw}-free" in raw_lower:
+                    detected.append({"allergen": allergen_key, "matched": f"{kw}-free", "severity": "low"})
+
+    return detected
+
+# ---------------- Auth + decorators ----------------
 def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -320,7 +363,7 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
-# ---------------- routes ----------------
+# ---------------- Routes ----------------
 @app.route('/')
 def root():
     if 'user_id' in session:
@@ -333,12 +376,15 @@ def login():
         username = request.form.get('username','').strip()
         password = request.form.get('password','')
         conn = get_db_connection()
-        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        cur.execute('SELECT * FROM users WHERE username = %s', (username,))
+        user = cur.fetchone()
+        cur.close()
         conn.close()
         if user and check_password_hash(user['password_hash'], password):
             session['user_id'] = user['id']
             session['username'] = user['username']
-            session['full_name'] = user['full_name'] if user['full_name'] else user['username']
+            session['full_name'] = user['full_name'] if user.get('full_name') else user['username']
             return redirect(url_for('dashboard'))
         else:
             return render_template('login.html', error='Invalid username/password.')
@@ -354,17 +400,26 @@ def signup():
         if not username or not password:
             return render_template('signup.html', error='Username and password required.', allergens=PREDEFINED_ALLERGENS)
         conn = get_db_connection()
+        cur = conn.cursor()
         try:
-            conn.execute(
-                'INSERT INTO users (username, password_hash, full_name, allergies) VALUES (?,?,?,?)',
+            cur.execute(
+                'INSERT INTO users (username, password_hash, full_name, allergies) VALUES (%s,%s,%s,%s)',
                 (username, generate_password_hash(password), full_name, json.dumps(selected))
             )
             conn.commit()
+            cur.close()
             conn.close()
             return redirect(url_for('login'))
-        except sqlite3.IntegrityError:
+        except psycopg2.IntegrityError:
+            conn.rollback()
+            cur.close()
             conn.close()
             return render_template('signup.html', error='Username already exists.', allergens=PREDEFINED_ALLERGENS)
+        except Exception as e:
+            conn.rollback()
+            cur.close()
+            conn.close()
+            return render_template('signup.html', error=f'Error: {str(e)}', allergens=PREDEFINED_ALLERGENS)
     return render_template('signup.html', allergens=PREDEFINED_ALLERGENS)
 
 @app.route('/dashboard')
@@ -397,19 +452,17 @@ def profile():
     user = get_user_by_id(session['user_id'])
     if request.method == 'POST':
         selected = request.form.getlist('allergies')
-        conn = get_db_connection()
-        conn.execute('UPDATE users SET allergies = ? WHERE id = ?', (json.dumps(selected), user['id']))
-        conn.commit()
-        conn.close()
+        update_user_allergies(user['id'], selected)
         return redirect(url_for('dashboard'))
     user_allergies = json.loads(user['allergies']) if user else []
     return render_template(
-    'profile.html',
-    user=user,   # add this
-    allergens=PREDEFINED_ALLERGENS,
-    user_allergies=user_allergies,
-    display=DISPLAY_NAME
-)
+        'profile.html',
+        user=user,
+        allergens=PREDEFINED_ALLERGENS,
+        user_allergies=user_allergies,
+        display=DISPLAY_NAME
+    )
+
 @app.route('/scan', methods=['GET','POST'])
 @login_required
 def scan():
@@ -424,7 +477,8 @@ def scan():
     # OCR
     image = Image.open(file.stream).convert('RGB')
     image = ImageOps.grayscale(image)
-    image = image.resize((800, 800), Image.LANCZOS)
+    # Resize to reasonable size while preserving aspect ratio
+    image.thumbnail((1200, 1200), Image.LANCZOS)
     image = ImageOps.autocontrast(image)
     raw_text = pytesseract.image_to_string(image, lang='eng')
 
@@ -433,7 +487,7 @@ def scan():
 
     # User allergies
     user = get_user_by_id(session['user_id'])
-    user_allergies = set(json.loads(user['allergies'])) if user else set()
+    user_allergies = set(json.loads(user['allergies'])) if user and user.get('allergies') else set()
 
     # Relevant allergens
     relevant = [d["allergen"] for d in detections if d["allergen"] in user_allergies]
@@ -459,17 +513,17 @@ def scan():
     else:
         message = "✅ No allergens detected at all."
 
-    # ------------------ ✅ New Feature 1: Safe Alternatives ------------------
+    # ------------------ New Feature: Safe Alternatives ------------------
     allergen_keys = list({d['allergen'] for d in detections}) if detections else []
     safe_alts = {a: get_safe_alternatives(a) for a in allergen_keys}
 
-    # ------------------ ✅ New Feature 2: Health Score ------------------
-    health = compute_health_score(raw_text)  # returns {"score": int, "found": [(ingredient, weight), ...]}
+    # ------------------ New Feature: Health Score ------------------
+    health = compute_health_score(raw_text)
 
-    # ------------------ ✅ New Feature 3: Predictive Risks ------------------
+    # ------------------ New Feature: Predictive Risks ------------------
     predictive = get_predictive_allergens_from_text(raw_text)
 
-    # ------------------ ✅ New Feature 4: Save Scan History ------------------
+    # ------------------ Save Scan History ------------------
     username = user['username'] if user else 'guest'
     save_scan_history(username, "unknown", raw_text, allergen_keys)
 
@@ -480,10 +534,10 @@ def scan():
         "user_allergies": list(user_allergies),
         "relevant": relevant,
         "message": message,
-        "safe_alternatives": safe_alts,              # new
-        "health_score": health["score"],             # new
-        "health_found": health["found"],             # new
-        "predictive_allergens": predictive           # new
+        "safe_alternatives": safe_alts,
+        "health_score": health["score"],
+        "health_found": health["found"],
+        "predictive_allergens": predictive
     }), 200
 
 @app.route('/scan_barcode', methods=['POST'])
@@ -496,7 +550,7 @@ def scan_barcode():
     demo_products = {
         "8901234567890": {"name": "Chocolate Bar", "ingredients": "Milk, Sugar, Cocoa, Peanut oil"},
         "8909876543210": {"name": "Oat Milk", "ingredients": "Water, Oats, Salt"},
-        "8901111111111": {"name": "Plain Water", "ingredients": ""}  # no ingredients listed
+        "8901111111111": {"name": "Plain Water", "ingredients": ""}
     }
 
     product = demo_products.get(barcode)
@@ -505,11 +559,9 @@ def scan_barcode():
 
     raw_text = product.get("ingredients", "")
 
-    # If no ingredients available → ask user to scan manually
     if not raw_text.strip():
         return jsonify({"error": f"No ingredients available for {product['name']}."}), 200
 
-    # Otherwise, process normally
     detections = detect_allergens_from_text(raw_text)
     health = compute_health_score(raw_text)
     predictive = get_predictive_allergens_from_text(raw_text)
@@ -522,45 +574,40 @@ def scan_barcode():
         "predictive_allergens": predictive
     })
 
-# ---------- Profile page (view + update allergies, list user feedback & history) ----------
+# Profile page (view + update allergies, list user feedback & history)
 @app.route('/myprofile', methods=['GET', 'POST'])
 @login_required
 def user_profile():
-    # Get current user record (assumes session['user_id'] is set by your login)
     user = get_user_by_id(session.get('user_id'))
     if not user:
-        return redirect(url_for('index'))
+        return redirect(url_for('root'))
 
-    # POST: update allergies
     if request.method == 'POST':
         new_allergies_raw = request.form.get('allergies', '')
         new_allergies = [a.strip() for a in new_allergies_raw.split(',') if a.strip()]
         update_user_allergies(user['id'], new_allergies)
-        # Refresh user object
         user = get_user_by_id(user['id'])
         return redirect(url_for('profile'))
 
-    # GET: gather user-related data
     user_allergies = json.loads(user['allergies']) if user.get('allergies') else []
     feedback_list = get_feedback_by_user(user['username'])
     history = get_scan_history_by_user(user['username'])
     return render_template('profile.html', user=user, user_allergies=user_allergies, feedback=feedback_list, history=history)
 
-
-# ---------- Community page (aggregates + recent feedback) ----------
+# Community page
 @app.route('/community')
 @login_required
 def community():
-    user = get_user_by_id(session['user_id'])                 # add this
+    user = get_user_by_id(session['user_id'])
     user_allergies = json.loads(user['allergies']) if user else []
 
     conn = get_db_connection()
-    agg_products = conn.execute(
-        "SELECT product_name, COUNT(*) as cnt FROM feedback GROUP BY product_name ORDER BY cnt DESC LIMIT 100"
-    ).fetchall()
-    recent = conn.execute(
-        "SELECT username, product_name, reaction, notes, timestamp FROM feedback ORDER BY timestamp DESC LIMIT 100"
-    ).fetchall()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT product_name, COUNT(*) as cnt FROM feedback GROUP BY product_name ORDER BY cnt DESC LIMIT 100")
+    agg_products = cur.fetchall()
+    cur.execute("SELECT username, product_name, reaction, notes, timestamp FROM feedback ORDER BY timestamp DESC LIMIT 100")
+    recent = cur.fetchall()
+    cur.close()
     conn.close()
 
     return render_template(
@@ -571,9 +618,6 @@ def community():
         agg_products=agg_products,
         recent=recent
     )
-
-
-
 
 @app.route('/feedback', methods=['POST'])
 @login_required
@@ -591,7 +635,7 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-# static files served automatically by Flask from /static
-
+# ---------------- Run ----------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # For production use a WSGI server; debug=True for local testing
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
