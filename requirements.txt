@@ -1,3 +1,9 @@
 Flask>=2.0
+gunicorn
 pillow
 pytesseract
+werkzeug
+
+# PostgreSQL + ORM
+psycopg2-binary
+SQLAlchemy>=2.0
