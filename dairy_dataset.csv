@@ -1,0 +1,1024 @@
+Food_Name,Allergic
+BUTTER ,1
+Buttermilk,1
+Casein,1
+Cheese,1
+Cream,1
+Curd,1
+Dairy,1
+Enzymes,1
+Fat,1
+Ghee,1
+Half-and-Half,1
+Kefir,1
+Lactose,1
+Mascarpone,1
+Milk,1
+Paneer,1
+Powder,1
+Protein,1
+Quark,1
+Rennet,1
+Ricotta,1
+Whey,1
+Yogurt,1
+Blend Evaporated Milk 898,1
+Blend Half-and-Half 680,1
+Blend Half-and-Half 702,1
+Blend Half-and-Half 928,1
+Blend Heavy Cream 550,1
+Blend Kefir 449,1
+Blend Lactose 610,1
+Blend Milk 278,1
+Blend Milk 36,1
+Blend Milk 604,1
+Blend Milk 605,1
+Blend Milk 658,1
+Meat,0
+Blend Milk Powder 786,1
+Blend Milk Powder 796,1
+Blend Milk Powder 922,1
+Blend Paneer 480,1
+Blend Paneer 980,1
+Blend Probiotic Dairy 128,1
+Blend Probiotic Dairy 2,1
+Blend Probiotic Dairy 245,1
+Blend Probiotic Dairy 823,1
+Blend Quark 711,1
+Blend Quark 971,1
+Blend Rennet 824,1
+Blend Ricotta 174,1
+Blend Ricotta 80,1
+Blend Skim Milk 656,1
+Blend Skim Milk 784,1
+Blend Skim Milk 937,1
+Blend Sour Cream 765,1
+Blend Whey 218,1
+Blend Whipped Cream 814,1
+Blend Whipped Cream 924,1
+Blend Yogurt 867,1
+Blend Yogurt 926,1
+Concentrate Butter 778,1
+Concentrate Butter 905,1
+Concentrate Buttermilk 282,1
+Concentrate Casein 169,1
+Concentrate Casein 835,1
+Concentrate Casein 842,1
+Concentrate Casein 991,1
+Concentrate Cheese 238,1
+Concentrate Cheese 815,1
+Concentrate Cheese 855,1
+Concentrate Clotted Cream 170,1
+Concentrate Clotted Cream 315,1
+Concentrate Condensed Milk 1000,1
+Concentrate Condensed Milk 240,1
+Concentrate Condensed Milk 506,1
+Concentrate Cultured Dairy 349,1
+Concentrate Cultured Dairy 630,1
+Concentrate Curd 699,1
+Concentrate Curd 921,1
+Concentrate Curd 972,1
+Concentrate Dairy Enzymes 367,1
+Concentrate Dairy Enzymes 439,1
+Concentrate Dairy Enzymes 75,1
+Concentrate Dairy Enzymes 839,1
+Concentrate Dairy Fat 87,1
+Concentrate Double Cream 575,1
+Concentrate Double Cream 859,1
+Concentrate Evaporated Milk 34,1
+Concentrate Half-and-Half 167,1
+Concentrate Half-and-Half 4,1
+Concentrate Half-and-Half 595,1
+Concentrate Heavy Cream 760,1
+Concentrate Lactose 530,1
+Concentrate Lactose 649,1
+Concentrate Mascarpone 106,1
+Concentrate Mascarpone 134,1
+Concentrate Mascarpone 735,1
+Concentrate Milk 561,1
+Concentrate Milk 579,1
+Concentrate Milk 722,1
+Concentrate Milk Powder 111,1
+Concentrate Milk Powder 833,1
+Concentrate Milk Powder 99,1
+Concentrate Milk Protein 327,1
+Concentrate Milk Protein 592,1
+Concentrate Paneer 302,1
+Concentrate Paneer 400,1
+Concentrate Paneer 492,1
+Concentrate Paneer 783,1
+Concentrate Paneer 957,1
+Concentrate Paneer 975,1
+Concentrate Probiotic Dairy 976,1
+Concentrate Quark 537,1
+Concentrate Quark 572,1
+Concentrate Ricotta 24,1
+Concentrate Ricotta 61,1
+Concentrate Skim Milk 126,1
+Concentrate Skim Milk 850,1
+Concentrate Sour Cream 158,1
+Concentrate Sour Cream 293,1
+Concentrate Sour Cream 501,1
+Concentrate Whey 249,1
+Concentrate Whey 608,1
+Concentrate Whey 849,1
+Concentrate Whipped Cream 497,1
+Concentrate Yogurt 250,1
+Concentrate Yogurt 387,1
+Crystals Butter 271,1
+Crystals Butter 847,1
+Crystals Butter 994,1
+Crystals Butter 995,1
+Crystals Buttermilk 185,1
+Crystals Buttermilk 568,1
+Crystals Casein 484,1
+Crystals Clotted Cream 295,1
+Crystals Clotted Cream 866,1
+Crystals Condensed Milk 133,1
+Crystals Cream 303,1
+Crystals Cream 682,1
+Crystals Cream 804,1
+Crystals Cultured Dairy 395,1
+Crystals Dairy Fat 18,1
+Crystals Dairy Fat 450,1
+Crystals Dairy Fat 472,1
+Crystals Dairy Fat 880,1
+Crystals Double Cream 352,1
+Crystals Double Cream 486,1
+Crystals Double Cream 806,1
+Crystals Evaporated Milk 499,1
+Crystals Evaporated Milk 936,1
+Crystals Half-and-Half 267,1
+Crystals Half-and-Half 318,1
+Crystals Half-and-Half 482,1
+Crystals Half-and-Half 563,1
+Crystals Lactose 556,1
+Crystals Lactose 721,1
+Crystals Lactose 821,1
+Crystals Lactose 91,1
+Crystals Mascarpone 471,1
+Crystals Milk 270,1
+Crystals Milk Powder 16,1
+Crystals Milk Powder 543,1
+Crystals Milk Protein 520,1
+Crystals Paneer 927,1
+Crystals Paneer 966,1
+Crystals Probiotic Dairy 397,1
+Crystals Probiotic Dairy 465,1
+Crystals Probiotic Dairy 724,1
+Crystals Probiotic Dairy 762,1
+Crystals Probiotic Dairy 830,1
+Crystals Quark 383,1
+Crystals Rennet 451,1
+Crystals Ricotta 252,1
+Crystals Ricotta 285,1
+Crystals Ricotta 332,1
+Crystals Skim Milk 919,1
+Crystals Sour Cream 609,1
+Crystals Whey 674,1
+Crystals Whey 809,1
+Crystals Whipped Cream 320,1
+Crystals Yogurt 841,1
+Derivative Buttermilk 860,1
+Derivative Cheese 771,1
+Derivative Clotted Cream 757,1
+Derivative Clotted Cream 951,1
+Derivative Clotted Cream 979,1
+Derivative Condensed Milk 130,1
+Derivative Cream 150,1
+Derivative Cream 430,1
+Derivative Curd 755,1
+Derivative Curd 848,1
+Derivative Dairy Enzymes 131,1
+Derivative Dairy Enzymes 384,1
+Derivative Evaporated Milk 767,1
+Derivative Ghee 172,1
+Derivative Ghee 473,1
+Derivative Half-and-Half 149,1
+Derivative Heavy Cream 405,1
+Derivative Heavy Cream 415,1
+Derivative Kefir 10,1
+Derivative Kefir 626,1
+Derivative Kefir 791,1
+Derivative Lactose 220,1
+Derivative Mascarpone 84,1
+Derivative Mascarpone 88,1
+Derivative Milk 107,1
+Derivative Milk 476,1
+Derivative Milk Powder 326,1
+Derivative Milk Powder 685,1
+Derivative Milk Powder 960,1
+Derivative Milk Protein 147,1
+Derivative Milk Protein 655,1
+Derivative Milk Protein 681,1
+Derivative Milk Protein 725,1
+Derivative Milk Protein 878,1
+Derivative Paneer 691,1
+Derivative Probiotic Dairy 460,1
+Derivative Probiotic Dairy 709,1
+Derivative Probiotic Dairy 753,1
+Derivative Quark 118,1
+Derivative Rennet 290,1
+Derivative Rennet 311,1
+Derivative Rennet 805,1
+Derivative Ricotta 272,1
+Derivative Ricotta 942,1
+Derivative Whey 157,1
+Derivative Whipped Cream 992,1
+Derivative Yogurt 379,1
+Enriched Butter 244,1
+Enriched Butter 704,1
+Enriched Butter 737,1
+Enriched Butter 950,1
+Enriched Buttermilk 186,1
+Enriched Casein 483,1
+Enriched Casein 822,1
+Enriched Cheese 251,1
+Enriched Clotted Cream 907,1
+Enriched Condensed Milk 281,1
+Enriched Cream 503,1
+Enriched Cream 68,1
+Enriched Cream 761,1
+Enriched Cultured Dairy 525,1
+Enriched Cultured Dairy 560,1
+Enriched Cultured Dairy 639,1
+Enriched Curd 686,1
+Enriched Dairy Enzymes 207,1
+Enriched Dairy Enzymes 597,1
+Enriched Double Cream 322,1
+Enriched Ghee 854,1
+Enriched Half-and-Half 759,1
+Enriched Kefir 344,1
+Enriched Kefir 812,1
+Enriched Kefir 94,1
+Enriched Lactose 549,1
+Enriched Mascarpone 304,1
+Enriched Mascarpone 600,1
+Enriched Milk 566,1
+Enriched Milk Powder 221,1
+Enriched Milk Powder 329,1
+Enriched Milk Powder 479,1
+Enriched Milk Powder 567,1
+Enriched Milk Powder 882,1
+Enriched Milk Protein 826,1
+Enriched Probiotic Dairy 205,1
+Enriched Probiotic Dairy 636,1
+Enriched Probiotic Dairy 874,1
+Enriched Quark 283,1
+Enriched Quark 586,1
+Enriched Quark 96,1
+Enriched Rennet 593,1
+Enriched Rennet 594,1
+Enriched Ricotta 162,1
+Enriched Ricotta 817,1
+Enriched Sour Cream 945,1
+Enriched Whey 279,1
+Enriched Whey 569,1
+Enriched Whipped Cream 32,1
+Enriched Whipped Cream 500,1
+Enriched Whipped Cream 62,1
+Enriched Yogurt 845,1
+Extract Butter 469,1
+Extract Butter 81,1
+Extract Buttermilk 434,1
+Extract Casein 5,1
+Extract Cheese 616,1
+Extract Clotted Cream 964,1
+Extract Condensed Milk 559,1
+Extract Cream 211,1
+Extract Cream 617,1
+Extract Cream 85,1
+Extract Curd 258,1
+Extract Dairy Enzymes 253,1
+Extract Dairy Enzymes 475,1
+Extract Dairy Enzymes 518,1
+Extract Dairy Enzymes 744,1
+Extract Dairy Enzymes 952,1
+Extract Dairy Fat 634,1
+Extract Dairy Fat 640,1
+Extract Double Cream 176,1
+Extract Double Cream 588,1
+Extract Double Cream 644,1
+Extract Evaporated Milk 254,1
+Extract Evaporated Milk 260,1
+Extract Evaporated Milk 770,1
+Extract Evaporated Milk 836,1
+Extract Ghee 180,1
+Extract Ghee 438,1
+Extract Ghee 779,1
+Extract Half-and-Half 362,1
+Extract Half-and-Half 733,1
+Extract Half-and-Half 811,1
+Extract Half-and-Half 910,1
+Extract Heavy Cream 20,1
+Extract Heavy Cream 246,1
+Extract Heavy Cream 393,1
+Extract Heavy Cream 696,1
+Extract Kefir 191,1
+Extract Lactose 748,1
+Extract Lactose 82,1
+Extract Mascarpone 140,1
+Extract Milk Powder 444,1
+Extract Milk Powder 596,1
+Extract Milk Powder 665,1
+Extract Milk Powder 883,1
+Extract Probiotic Dairy 533,1
+Extract Probiotic Dairy 923,1
+Extract Skim Milk 137,1
+Extract Sour Cream 470,1
+Extract Sour Cream 932,1
+Extract Whey 684,1
+Extract Whey 708,1
+Extract Whey 754,1
+Extract Whipped Cream 428,1
+Extract Whipped Cream 749,1
+Extract Whipped Cream 808,1
+Extract Yogurt 437,1
+Extract Yogurt 86,1
+Extract Yogurt 93,1
+Fermented Butter 548,1
+Fermented Casein 968,1
+Fermented Cheese 335,1
+Fermented Cheese 648,1
+Fermented Condensed Milk 22,1
+Fermented Condensed Milk 236,1
+Fermented Condensed Milk 664,1
+Fermented Cream 410,1
+Fermented Cream 436,1
+Fermented Cream 54,1
+Fermented Cream 641,1
+Fermented Cream 714,1
+Fermented Cream 840,1
+Fermented Cream 844,1
+Fermented Cultured Dairy 121,1
+Fermented Curd 426,1
+Fermented Dairy Enzymes 108,1
+Fermented Dairy Enzymes 33,1
+Fermented Dairy Fat 896,1
+Fermented Double Cream 144,1
+Fermented Double Cream 734,1
+Fermented Double Cream 829,1
+Fermented Evaporated Milk 554,1
+Fermented Evaporated Milk 897,1
+Fermented Ghee 231,1
+Fermented Ghee 915,1
+Fermented Half-and-Half 673,1
+Fermented Heavy Cream 325,1
+Fermented Heavy Cream 584,1
+Fermented Kefir 382,1
+Fermented Kefir 425,1
+Fermented Lactose 557,1
+Fermented Mascarpone 177,1
+Fermented Milk 233,1
+Fermented Milk 374,1
+Fermented Milk Powder 417,1
+Fermented Milk Protein 297,1
+Fermented Milk Protein 876,1
+Fermented Paneer 777,1
+Fermented Probiotic Dairy 510,1
+Fermented Probiotic Dairy 667,1
+Fermented Quark 452,1
+Fermented Quark 585,1
+Fermented Ricotta 222,1
+Fermented Ricotta 323,1
+Fermented Ricotta 403,1
+Fermented Ricotta 827,1
+Fermented Skim Milk 545,1
+Fermented Skim Milk 795,1
+Fermented Sour Cream 633,1
+Fermented Sour Cream 904,1
+Fermented Whey 336,1
+Fermented Whipped Cream 199,1
+Fermented Whipped Cream 650,1
+Fermented Yogurt 810,1
+Hydrolyzed Butter 216,1
+Hydrolyzed Butter 683,1
+Hydrolyzed Buttermilk 27,1
+Hydrolyzed Casein 286,1
+Hydrolyzed Casein 941,1
+Hydrolyzed Cheese 956,1
+Hydrolyzed Clotted Cream 429,1
+Hydrolyzed Condensed Milk 340,1
+Hydrolyzed Condensed Milk 46,1
+Hydrolyzed Condensed Milk 74,1
+Hydrolyzed Cream 513,1
+Hydrolyzed Cream 931,1
+Hydrolyzed Cultured Dairy 215,1
+Hydrolyzed Cultured Dairy 435,1
+Hydrolyzed Curd 192,1
+Hydrolyzed Curd 98,1
+Hydrolyzed Dairy Enzymes 203,1
+Hydrolyzed Dairy Enzymes 431,1
+Hydrolyzed Dairy Enzymes 53,1
+Hydrolyzed Dairy Fat 183,1
+Hydrolyzed Dairy Fat 458,1
+Hydrolyzed Evaporated Milk 110,1
+Hydrolyzed Evaporated Milk 242,1
+Hydrolyzed Heavy Cream 284,1
+Hydrolyzed Kefir 223,1
+Hydrolyzed Kefir 692,1
+Hydrolyzed Lactose 468,1
+Hydrolyzed Lactose 912,1
+Hydrolyzed Mascarpone 288,1
+Hydrolyzed Mascarpone 30,1
+Hydrolyzed Milk 642,1
+Hydrolyzed Milk Powder 306,1
+Hydrolyzed Milk Protein 625,1
+Hydrolyzed Milk Protein 706,1
+Hydrolyzed Milk Protein 794,1
+Hydrolyzed Milk Protein 92,1
+Hydrolyzed Paneer 974,1
+Hydrolyzed Rennet 745,1
+Hydrolyzed Rennet 985,1
+Hydrolyzed Ricotta 212,1
+Hydrolyzed Ricotta 275,1
+Hydrolyzed Sour Cream 647,1
+Hydrolyzed Whey 350,1
+Hydrolyzed Whey 529,1
+Hydrolyzed Whey 69,1
+Infusion Butter 488,1
+Infusion Butter 933,1
+Infusion Casein 370,1
+Infusion Casein 478,1
+Infusion Cheese 408,1
+Infusion Clotted Cream 646,1
+Infusion Cultured Dairy 509,1
+Infusion Cultured Dairy 816,1
+Infusion Cultured Dairy 873,1
+Infusion Curd 256,1
+Infusion Curd 440,1
+Infusion Dairy Fat 58,1
+Infusion Double Cream 190,1
+Infusion Double Cream 226,1
+Infusion Double Cream 277,1
+Infusion Double Cream 433,1
+Infusion Double Cream 694,1
+Infusion Evaporated Milk 348,1
+Infusion Evaporated Milk 818,1
+Infusion Ghee 917,1
+Infusion Half-and-Half 368,1
+Infusion Heavy Cream 573,1
+Infusion Mascarpone 474,1
+Infusion Milk 505,1
+Infusion Milk Powder 12,1
+Infusion Milk Protein 164,1
+Infusion Milk Protein 227,1
+Infusion Milk Protein 621,1
+Infusion Milk Protein 820,1
+Infusion Paneer 638,1
+Infusion Probiotic Dairy 389,1
+Infusion Quark 536,1
+Infusion Quark 797,1
+Infusion Quark 891,1
+Infusion Rennet 255,1
+Infusion Rennet 643,1
+Infusion Ricotta 481,1
+Infusion Ricotta 56,1
+Infusion Ricotta 654,1
+Infusion Skim Milk 542,1
+Infusion Skim Milk 831,1
+Infusion Whey 214,1
+Infusion Whey 541,1
+Infusion Whipped Cream 623,1
+Infusion Yogurt 351,1
+Infusion Yogurt 676,1
+Infusion Yogurt 996,1
+Isolate Butter 401,1
+Isolate Butter 441,1
+Isolate Buttermilk 895,1
+Isolate Buttermilk 95,1
+Isolate Clotted Cream 103,1
+Isolate Clotted Cream 555,1
+Isolate Condensed Milk 790,1
+Isolate Cream 341,1
+Isolate Cultured Dairy 799,1
+Isolate Curd 266,1
+Isolate Dairy Enzymes 578,1
+Isolate Double Cream 64,1
+Isolate Evaporated Milk 445,1
+Isolate Evaporated Milk 743,1
+Isolate Ghee 969,1
+Isolate Half-and-Half 204,1
+Isolate Half-and-Half 268,1
+Isolate Heavy Cream 416,1
+Isolate Heavy Cream 462,1
+Isolate Kefir 651,1
+Isolate Mascarpone 411,1
+Isolate Mascarpone 424,1
+Isolate Mascarpone 67,1
+Isolate Milk 153,1
+Isolate Milk 432,1
+Isolate Milk 77,1
+Isolate Milk 906,1
+Isolate Paneer 886,1
+Isolate Probiotic Dairy 113,1
+Isolate Probiotic Dairy 949,1
+Isolate Quark 498,1
+Isolate Quark 590,1
+Isolate Quark 853,1
+Isolate Rennet 168,1
+Isolate Rennet 989,1
+Isolate Ricotta 97,1
+Isolate Ricotta 997,1
+Isolate Sour Cream 454,1
+Isolate Sour Cream 455,1
+Isolate Sour Cream 652,1
+Isolate Whipped Cream 402,1
+Isolate Whipped Cream 627,1
+Liquid Butter 178,1
+Liquid Buttermilk 404,1
+Liquid Casein 209,1
+Liquid Casein 453,1
+Liquid Cheese 29,1
+Liquid Cheese 366,1
+Liquid Cheese 637,1
+Liquid Cheese 718,1
+Liquid Clotted Cream 154,1
+Liquid Clotted Cream 378,1
+Liquid Clotted Cream 553,1
+Liquid Clotted Cream 63,1
+Liquid Clotted Cream 780,1
+Liquid Clotted Cream 885,1
+Liquid Condensed Milk 116,1
+Liquid Condensed Milk 363,1
+Liquid Condensed Milk 587,1
+Liquid Cream 346,1
+Liquid Cream 730,1
+Liquid Cultured Dairy 210,1
+Liquid Cultured Dairy 234,1
+Liquid Cultured Dairy 243,1
+Liquid Cultured Dairy 953,1
+Liquid Curd 39,1
+Liquid Curd 742,1
+Liquid Curd 999,1
+Liquid Dairy Enzymes 151,1
+Liquid Dairy Enzymes 879,1
+Liquid Double Cream 132,1
+Liquid Double Cream 353,1
+Liquid Double Cream 668,1
+Liquid Double Cream 690,1
+Liquid Double Cream 736,1
+Liquid Evaporated Milk 916,1
+Liquid Ghee 104,1
+Liquid Ghee 793,1
+Liquid Heavy Cream 852,1
+Liquid Heavy Cream 962,1
+Liquid Kefir 512,1
+Liquid Lactose 333,1
+Liquid Lactose 963,1
+Liquid Lactose 993,1
+Liquid Mascarpone 259,1
+Liquid Mascarpone 72,1
+Liquid Milk Powder 825,1
+Liquid Milk Protein 881,1
+Liquid Paneer 79,1
+Liquid Probiotic Dairy 798,1
+Liquid Quark 884,1
+Liquid Rennet 159,1
+Liquid Rennet 38,1
+Liquid Rennet 788,1
+Liquid Rennet 930,1
+Liquid Ricotta 373,1
+Liquid Ricotta 911,1
+Liquid Skim Milk 235,1
+Liquid Skim Milk 324,1
+Liquid Skim Milk 629,1
+Liquid Sour Cream 100,1
+Liquid Sour Cream 6,1
+Liquid Whey 200,1
+Liquid Whey 47,1
+Liquid Yogurt 758,1
+Natural Butter 678,1
+Natural Buttermilk 418,1
+Natural Buttermilk 789,1
+Natural Casein 494,1
+Natural Casein 803,1
+Natural Cream 112,1
+Natural Cream 208,1
+Natural Cultured Dairy 298,1
+Natural Cultured Dairy 998,1
+Natural Curd 851,1
+Natural Dairy Enzymes 313,1
+Natural Dairy Enzymes 540,1
+Natural Dairy Enzymes 875,1
+Natural Double Cream 894,1
+Natural Double Cream 920,1
+Natural Evaporated Milk 296,1
+Natural Evaporated Milk 345,1
+Natural Ghee 265,1
+Natural Ghee 544,1
+Natural Ghee 65,1
+Natural Ghee 958,1
+Natural Half-and-Half 228,1
+Natural Heavy Cream 188,1
+Natural Heavy Cream 26,1
+Natural Heavy Cream 562,1
+Natural Heavy Cream 772,1
+Natural Heavy Cream 900,1
+Natural Kefir 380,1
+Natural Kefir 601,1
+Natural Kefir 768,1
+Natural Lactose 672,1
+Natural Mascarpone 9,1
+Natural Milk 136,1
+Natural Milk Powder 978,1
+Natural Milk Protein 148,1
+Natural Milk Protein 693,1
+Natural Paneer 522,1
+Natural Paneer 574,1
+Natural Quark 135,1
+Natural Quark 398,1
+Natural Quark 723,1
+Natural Quark 764,1
+Natural Rennet 356,1
+Natural Rennet 710,1
+Natural Ricotta 695,1
+Natural Skim Milk 756,1
+Natural Skim Milk 774,1
+Natural Sour Cream 117,1
+Natural Sour Cream 394,1
+Natural Sour Cream 526,1
+Natural Sour Cream 856,1
+Natural Whey 463,1
+Natural Whey 938,1
+Natural Whipped Cream 15,1
+Organic Butter 45,1
+Organic Butter 909,1
+Organic Buttermilk 511,1
+Organic Buttermilk 581,1
+Organic Casein 421,1
+Organic Casein 719,1
+Organic Cheese 347,1
+Organic Cheese 611,1
+Organic Cream 14,1
+Organic Cream 182,1
+Organic Cultured Dairy 354,1
+Organic Cultured Dairy 517,1
+Organic Cultured Dairy 893,1
+Organic Dairy Enzymes 48,1
+Organic Dairy Fat 189,1
+Organic Dairy Fat 289,1
+Organic Dairy Fat 299,1
+Organic Double Cream 334,1
+Organic Double Cream 669,1
+Organic Evaporated Milk 213,1
+Organic Ghee 371,1
+Organic Ghee 946,1
+Organic Heavy Cream 195,1
+Organic Mascarpone 3,1
+Organic Mascarpone 59,1
+Organic Mascarpone 620,1
+Organic Mascarpone 66,1
+Organic Milk 261,1
+Organic Milk 819,1
+Organic Milk 858,1
+Organic Milk Powder 156,1
+Organic Paneer 101,1
+Organic Paneer 225,1
+Organic Paneer 934,1
+Organic Probiotic Dairy 843,1
+Organic Quark 491,1
+Organic Quark 698,1
+Organic Rennet 409,1
+Organic Rennet 419,1
+Organic Rennet 689,1
+Organic Ricotta 165,1
+Organic Ricotta 239,1
+Organic Ricotta 598,1
+Organic Ricotta 899,1
+Organic Sour Cream 23,1
+Organic Sour Cream 877,1
+Organic Sour Cream 890,1
+Organic Whey 939,1
+Organic Whipped Cream 247,1
+Organic Whipped Cream 280,1
+Organic Yogurt 19,1
+Paste Butter 376,1
+Paste Buttermilk 217,1
+Paste Buttermilk 337,1
+Paste Buttermilk 422,1
+Paste Buttermilk 712,1
+Paste Casein 583,1
+Paste Cheese 944,1
+Paste Clotted Cream 914,1
+Paste Condensed Milk 330,1
+Paste Condensed Milk 670,1
+Paste Cream 423,1
+Paste Cultured Dairy 201,1
+Paste Cultured Dairy 776,1
+Paste Curd 892,1
+Paste Dairy Enzymes 129,1
+Paste Dairy Enzymes 925,1
+Paste Dairy Fat 152,1
+Paste Dairy Fat 361,1
+Paste Dairy Fat 386,1
+Paste Dairy Fat 539,1
+Paste Dairy Fat 76,1
+Paste Double Cream 312,1
+Paste Double Cream 52,1
+Paste Evaporated Milk 184,1
+Paste Evaporated Milk 230,1
+Paste Ghee 443,1
+Paste Half-and-Half 507,1
+Paste Half-and-Half 970,1
+Paste Heavy Cream 388,1
+Paste Heavy Cream 527,1
+Paste Kefir 412,1
+Paste Kefir 71,1
+Paste Lactose 206,1
+Paste Lactose 44,1
+Paste Mascarpone 224,1
+Paste Milk 264,1
+Paste Milk 360,1
+Paste Milk Protein 173,1
+Paste Milk Protein 635,1
+Paste Milk Protein 787,1
+Paste Paneer 115,1
+Paste Paneer 263,1
+Paste Paneer 60,1
+Paste Paneer 871,1
+Paste Probiotic Dairy 396,1
+Paste Quark 109,1
+Paste Quark 485,1
+Paste Quark 965,1
+Paste Rennet 369,1
+Paste Skim Milk 632,1
+Paste Sour Cream 31,1
+Paste Whey 21,1
+Paste Whey 660,1
+Paste Whipped Cream 219,1
+Paste Whipped Cream 490,1
+Paste Whipped Cream 747,1
+Paste Whipped Cream 986,1
+Powder Butter 390,1
+Powder Butter 697,1
+Powder Casein 202,1
+Powder Casein 538,1
+Powder Casein 802,1
+Powder Cheese 427,1
+Powder Cheese 751,1
+Powder Clotted Cream 607,1
+Powder Condensed Milk 229,1
+Powder Condensed Milk 307,1
+Powder Condensed Milk 552,1
+Powder Cream 139,1
+Powder Cream 766,1
+Powder Cultured Dairy 122,1
+Powder Cultured Dairy 720,1
+Powder Cultured Dairy 955,1
+Powder Curd 546,1
+Powder Curd 558,1
+Powder Curd 792,1
+Powder Dairy Enzymes 287,1
+Powder Dairy Fat 448,1
+Powder Dairy Fat 868,1
+Powder Dairy Fat 940,1
+Powder Double Cream 262,1
+Powder Double Cream 355,1
+Powder Double Cream 988,1
+Powder Ghee 869,1
+Powder Half-and-Half 70,1
+Powder Heavy Cream 846,1
+Powder Kefir 308,1
+Powder Kefir 359,1
+Powder Kefir 399,1
+Powder Kefir 775,1
+Powder Kefir 870,1
+Powder Milk 105,1
+Powder Milk 248,1
+Powder Milk 467,1
+Powder Milk 752,1
+Powder Milk Powder 731,1
+Powder Milk Protein 865,1
+Powder Milk Protein 887,1
+Powder Probiotic Dairy 138,1
+Powder Rennet 291,1
+Powder Skim Milk 420,1
+Powder Skim Milk 599,1
+Powder Skim Milk 861,1
+Powder Sour Cream 357,1
+Powder Sour Cream 782,1
+Powder Whey 727,1
+Powder Whey 78,1
+Powder Whipped Cream 292,1
+Powder Whipped Cream 391,1
+Powder Whipped Cream 565,1
+Powder Whipped Cream 863,1
+Powder Yogurt 502,1
+Powder Yogurt 515,1
+Pure Butter 187,1
+Pure Buttermilk 659,1
+Pure Buttermilk 769,1
+Pure Cheese 666,1
+Pure Clotted Cream 442,1
+Pure Clotted Cream 591,1
+Pure Clotted Cream 717,1
+Pure Cream 514,1
+Pure Cultured Dairy 902,1
+Pure Cultured Dairy 913,1
+Pure Dairy Enzymes 125,1
+Pure Dairy Enzymes 237,1
+Pure Dairy Enzymes 785,1
+Pure Dairy Fat 321,1
+Pure Dairy Fat 331,1
+Pure Dairy Fat 447,1
+Pure Dairy Fat 838,1
+Pure Double Cream 25,1
+Pure Double Cream 309,1
+Pure Double Cream 343,1
+Pure Double Cream 653,1
+Pure Evaporated Milk 42,1
+Pure Evaporated Milk 606,1
+Pure Evaporated Milk 726,1
+Pure Ghee 145,1
+Pure Ghee 161,1
+Pure Ghee 414,1
+Pure Ghee 487,1
+Pure Ghee 729,1
+Pure Heavy Cream 521,1
+Pure Heavy Cream 547,1
+Pure Kefir 715,1
+Pure Kefir 732,1
+Pure Mascarpone 35,1
+Pure Mascarpone 446,1
+Pure Mascarpone 663,1
+Pure Mascarpone 677,1
+Pure Mascarpone 807,1
+Pure Milk 124,1
+Pure Milk 317,1
+Pure Milk 365,1
+Pure Milk 372,1
+Pure Milk 628,1
+Pure Milk Powder 196,1
+Pure Milk Powder 837,1
+Pure Milk Protein 456,1
+Pure Milk Protein 577,1
+Pure Paneer 13,1
+Pure Paneer 179,1
+Pure Paneer 269,1
+Pure Probiotic Dairy 342,1
+Pure Probiotic Dairy 615,1
+Pure Probiotic Dairy 862,1
+Pure Probiotic Dairy 982,1
+Pure Quark 50,1
+Pure Quark 83,1
+Pure Rennet 55,1
+Pure Rennet 801,1
+Pure Ricotta 535,1
+Pure Ricotta 857,1
+Pure Ricotta 977,1
+Pure Skim Milk 17,1
+Pure Skim Milk 300,1
+Pure Skim Milk 489,1
+Pure Skim Milk 961,1
+Pure Sour Cream 257,1
+Pure Sour Cream 310,1
+Pure Sour Cream 571,1
+Pure Whey 570,1
+Raw Buttermilk 477,1
+Raw Buttermilk 901,1
+Raw Buttermilk 947,1
+Raw Casein 464,1
+Raw Cheese 392,1
+Raw Cheese 773,1
+Raw Cheese 935,1
+Raw Clotted Cream 624,1
+Raw Condensed Milk 181,1
+Raw Condensed Milk 602,1
+Raw Condensed Milk 741,1
+Raw Condensed Milk 943,1
+Raw Cultured Dairy 37,1
+Raw Cultured Dairy 381,1
+Raw Cultured Dairy 705,1
+Raw Curd 316,1
+Raw Curd 750,1
+Raw Curd 908,1
+Raw Dairy Enzymes 358,1
+Raw Dairy Enzymes 984,1
+Raw Dairy Fat 166,1
+Raw Dairy Fat 888,1
+Raw Double Cream 319,1
+Raw Evaporated Milk 746,1
+Raw Ghee 973,1
+Raw Half-and-Half 120,1
+Raw Half-and-Half 305,1
+Raw Half-and-Half 8,1
+Raw Kefir 364,1
+Raw Kefir 618,1
+Raw Kefir 716,1
+Raw Lactose 990,1
+Raw Mascarpone 51,1
+Raw Mascarpone 7,1
+Raw Mascarpone 728,1
+Raw Milk 294,1
+Raw Milk 407,1
+Raw Milk Powder 43,1
+Raw Milk Powder 57,1
+Raw Milk Powder 763,1
+Raw Milk Protein 274,1
+Raw Milk Protein 276,1
+Raw Milk Protein 516,1
+Raw Paneer 141,1
+Raw Probiotic Dairy 171,1
+Raw Quark 273,1
+Raw Quark 929,1
+Raw Rennet 193,1
+Raw Rennet 466,1
+Raw Rennet 781,1
+Raw Skim Milk 385,1
+Raw Skim Milk 508,1
+Raw Sour Cream 713,1
+Raw Whey 163,1
+Raw Whey 241,1
+Raw Whey 461,1
+Raw Whipped Cream 90,1
+Raw Whipped Cream 987,1
+Raw Yogurt 603,1
+Raw Yogurt 828,1
+Ultra Butter 576,1
+Ultra Buttermilk 493,1
+Ultra Buttermilk 613,1
+Ultra Buttermilk 903,1
+Ultra Cheese 119,1
+Ultra Cheese 338,1
+Ultra Cheese 701,1
+Ultra Clotted Cream 114,1
+Ultra Condensed Milk 102,1
+Ultra Condensed Milk 679,1
+Ultra Condensed Milk 707,1
+Ultra Condensed Milk 889,1
+Ultra Cream 328,1
+Ultra Cream 981,1
+Ultra Cultured Dairy 504,1
+Ultra Cultured Dairy 740,1
+Ultra Cultured Dairy 967,1
+Ultra Curd 142,1
+Ultra Dairy Enzymes 375,1
+Ultra Dairy Enzymes 413,1
+Ultra Double Cream 41,1
+Ultra Double Cream 532,1
+Ultra Double Cream 619,1
+Ultra Double Cream 954,1
+Ultra Double Cream 983,1
+Ultra Evaporated Milk 377,1
+Ultra Evaporated Milk 457,1
+Ultra Evaporated Milk 534,1
+Ultra Ghee 198,1
+Ultra Ghee 28,1
+Ultra Ghee 614,1
+Ultra Half-and-Half 123,1
+Ultra Half-and-Half 531,1
+Ultra Half-and-Half 89,1
+Ultra Heavy Cream 146,1
+Ultra Heavy Cream 551,1
+Ultra Heavy Cream 918,1
+Ultra Kefir 197,1
+Ultra Kefir 687,1
+Ultra Lactose 301,1
+Ultra Mascarpone 1,1
+Ultra Mascarpone 580,1
+Ultra Mascarpone 959,1
+Ultra Milk 11,1
+Ultra Milk 406,1
+Ultra Milk Powder 657,1
+Ultra Milk Powder 800,1
+Ultra Paneer 155,1
+Ultra Paneer 175,1
+Ultra Probiotic Dairy 40,1
+Ultra Probiotic Dairy 612,1
+Ultra Quark 232,1
+Ultra Rennet 496,1
+Ultra Rennet 661,1
+Ultra Rennet 675,1
+Ultra Skim Milk 314,1
+Ultra Sour Cream 645,1
+Ultra Sour Cream 671,1
+Ultra Sour Cream 872,1
+Ultra Whey 524,1
+Ultra Whey 622,1
+Ultra Whey 73,1
+Ultra Whey 948,1
+Ultra Yogurt 143,1
+Blend Butter 127,1
+Blend Butter 528,1
+Blend Buttermilk 589,1
+Blend Buttermilk 703,1
+Blend Casein 160,1
+Blend Casein 739,1
+Blend Cheese 523,1
+Blend Condensed Milk 582,1
+Blend Cream 700,1
+Blend Cream 738,1
+Blend Cream 832,1
+Blend Cultured Dairy 49,1
+Blend Cultured Dairy 688,1
+Blend Cultured Dairy 834,1
+Blend Curd 459,1
+Blend Dairy Enzymes 194,1
+Blend Dairy Fat 564,1
+Blend Dairy Fat 662,1
+Blend Dairy Fat 813,1
+Blend Double Cream 495,1
+Blend Double Cream 864,1
+Blend Evaporated Milk 339,1
+Blend Evaporated Milk 631,1

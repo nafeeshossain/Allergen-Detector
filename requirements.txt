@@ -1,0 +1,7 @@
+streamlit
+easyocr
+pandas
+scikit-learn
+opencv-python-headless
+numpy
+pillow
