@@ -1,0 +1,7 @@
+Flask==3.0.0
+Werkzeug>=3.0.0
+pytesseract==0.3.10
+Pillow==10.4.0
+opencv-python==4.10.0.84
+numpy==1.26.4
+rapidfuzz==3.9.7

@@ -1,0 +1,92 @@
+{
+  "peanut": [
+    "peanut",
+    "groundnut",
+    "arachis",
+    "peanut oil",
+    "arachis oil"
+  ],
+  "tree_nuts": [
+    "almond",
+    "walnut",
+    "cashew",
+    "pistachio",
+    "hazelnut",
+    "pecan",
+    "macadamia",
+    "brazil nut"
+  ],
+  "milk": [
+    "milk",
+    "casein",
+    "whey",
+    "lactose",
+    "buttermilk",
+    "ghee"
+  ],
+  "egg": [
+    "egg",
+    "albumen",
+    "ovalbumin",
+    "ovomucoid",
+    "lysozyme (egg)"
+  ],
+  "soy": [
+    "soy",
+    "soya",
+    "soybean",
+    "edamame",
+    "soy lecithin"
+  ],
+  "wheat_gluten": [
+    "wheat",
+    "gluten",
+    "semolina",
+    "farina",
+    "spelt",
+    "durum",
+    "graham"
+  ],
+  "fish": [
+    "fish",
+    "anchovy",
+    "cod",
+    "salmon",
+    "tuna",
+    "pollock"
+  ],
+  "shellfish": [
+    "shrimp",
+    "prawn",
+    "crab",
+    "lobster",
+    "crayfish"
+  ],
+  "sesame": [
+    "sesame",
+    "tahini",
+    "gingelly"
+  ],
+  "mustard": [
+    "mustard",
+    "mustard flour",
+    "mustard seed"
+  ],
+  "celery": [
+    "celery",
+    "celeriac"
+  ],
+  "sulphites": [
+    "sulphite",
+    "sulphites",
+    "sulfite",
+    "E220",
+    "E221",
+    "E222",
+    "E223",
+    "E224",
+    "E226",
+    "E227",
+    "E228"
+  ]
+}

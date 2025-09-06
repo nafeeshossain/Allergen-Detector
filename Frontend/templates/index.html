@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Allergen Label Scanner (Local)</title>
+  <link rel="stylesheet" href="/static/css/styles.css"/>
+</head>
+<body>
+  <header>
+    <h1>Personalized Allergen Detection</h1>
+    <p class="subtitle">Scan a food label image to detect potential allergens. Configure your allergy profile below.</p>
+  </header>
+
+  <section class="card">
+    <h2>1) Your Allergy Profile</h2>
+    <div id="profile">
+      <div class="tags" id="allergen-tags"></div>
+      <p class="hint">Toggle what you are allergic to. Your selection is saved in this browser only.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2) Upload Label Image</h2>
+    <form id="scan-form">
+      <input type="file" id="image" name="image" accept="image/*" required />
+      <button type="submit">Scan</button>
+    </form>
+    <div id="progress" class="muted"></div>
+  </section>
+
+  <section class="card">
+    <h2>Results</h2>
+    <div id="results">
+      <pre id="raw-text" class="code"></pre>
+      <div id="detected"></div>
+      <div id="personal-warnings"></div>
+    </div>
+  </section>
+
+  <footer>
+    <small>Local prototype for demo use. Always verify labels manually before consumption.</small>
+  </footer>
+
+  <script>window.ALLERGENS = {"peanut": ["peanut", "groundnut", "arachis", "peanut oil", "arachis oil"], "tree_nuts": ["almond", "walnut", "cashew", "pistachio", "hazelnut", "pecan", "macadamia", "brazil nut"], "milk": ["milk", "casein", "whey", "lactose", "buttermilk", "ghee"], "egg": ["egg", "albumen", "ovalbumin", "ovomucoid", "lysozyme (egg)"], "soy": ["soy", "soya", "soybean", "edamame", "soy lecithin"], "wheat_gluten": ["wheat", "gluten", "semolina", "farina", "spelt", "durum", "graham"], "fish": ["fish", "anchovy", "cod", "salmon", "tuna", "pollock"], "shellfish": ["shrimp", "prawn", "crab", "lobster", "crayfish"], "sesame": ["sesame", "tahini", "gingelly"], "mustard": ["mustard", "mustard flour", "mustard seed"], "celery": ["celery", "celeriac"], "sulphites": ["sulphite", "sulphites", "sulfite", "E220", "E221", "E222", "E223", "E224", "E226", "E227", "E228"]};</script>
+  <script src="/static/js/script.js"></script>
+</body>
+</html>
