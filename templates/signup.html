@@ -1,20 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Sign up</h2>
-<form method="post" class="card form">
-  <label>Username <input name="username" required></label>
-  <label>Full name <input name="full_name"></label>
-  <label>Password <input name="password" type="password" required></label>
+<div style="display:flex; justify-content:center; align-items:center; min-height:85vh; padding:20px;">
+  <div style="max-width:500px; width:100%; padding:40px; background:#fff; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.1);">
 
-  <fieldset>
-    <legend>Tell us your allergies (predefined)</legend>
-    {% for key, kws in allergens.items() %}
-      <label class="chk"><input type="checkbox" name="allergies" value="{{key}}"> {{ DISPLAY_NAME[key] if key in DISPLAY_NAME else key }}</label>
-    {% endfor %}
-  </fieldset>
+    <h2 style="margin-bottom:20px; text-align:center; font-size:1.8rem; color:#333;">📝 Sign Up</h2>
 
-  <button class="btn">Create account</button>
-  {% if error %}<p class="error">{{ error }}</p>{% endif %}
-</form>
-<p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    <form method="post">
+
+      <!-- Username -->
+      <div style="margin-bottom:16px;">
+        <label style="font-weight:600; color:#555; display:block; margin-bottom:6px;">Username</label>
+        <input name="username" required 
+               style="width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
+      </div>
+
+      <!-- Full Name -->
+      <div style="margin-bottom:16px;">
+        <label style="font-weight:600; color:#555; display:block; margin-bottom:6px;">Full name</label>
+        <input name="full_name"
+               style="width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
+      </div>
+
+      <!-- Password -->
+      <div style="margin-bottom:20px;">
+        <label style="font-weight:600; color:#555; display:block; margin-bottom:6px;">Password</label>
+        <input name="password" type="password" required
+               style="width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
+      </div>
+
+      <!-- Allergies -->
+      <fieldset style="border:1px solid #eee; border-radius:10px; padding:15px; margin-bottom:20px;">
+        <legend style="font-weight:600; color:#333;">Tell us your allergies</legend>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+          {% for key, kws in allergens.items() %}
+            <label style="font-size:14px; color:#555;">
+              <input type="checkbox" name="allergies" value="{{key}}" style="margin-right:6px;">
+              {{ DISPLAY_NAME[key] if key in DISPLAY_NAME else key }}
+            </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <!-- Submit Button -->
+      <button type="submit"
+              style="width:100%; padding:12px; border:none; border-radius:10px; background:#4CAF50; color:#fff; font-size:15px; font-weight:600; cursor:pointer;">
+        Create Account
+      </button>
+
+      {% if error %}
+        <p style="color:red; margin-top:12px; font-size:14px; text-align:center;">{{ error }}</p>
+      {% endif %}
+    </form>
+
+    <!-- Login Link -->
+    <p style="margin-top:20px; text-align:center; color:#555;">
+      Already have an account? 
+      <a href="{{ url_for('login') }}" style="color:#4CAF50; font-weight:600; text-decoration:none;">Login</a>
+    </p>
+  </div>
+</div>
 {% endblock %}

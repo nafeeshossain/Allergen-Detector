@@ -4,32 +4,143 @@
   <meta charset="utf-8" />
   <title>Allergen Scanner</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #333;
+      background: url("{{ url_for('static', filename='bg.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+    }
+    .topbar {
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #2563eb;
+      text-decoration: none;
+    }
+    nav a {
+      margin-left: 22px;
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #2563eb;
+    }
+    nav span {
+      font-size: 0.9rem;
+      color: #555;
+      margin-left: 15px;
+    }
+    main.container {
+      max-width: 760px;
+      margin: 60px auto;
+      padding: 30px;
+      text-align: center;
+      background: none;   /* no box */
+      box-shadow: none;
+    }
+    .foot {
+      margin-top: 80px;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .credit-card {
+      text-align: center;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: #fff;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      max-width: 600px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
+  <!-- Header / Navbar -->
   <header class="topbar">
     <div class="container">
-      <a class="brand" href="{{ url_for('dashboard') }}">Allergen Scanner</a>
+      <a class="brand" href="{{ url_for('dashboard') }}">Allergen Scanner<span style="color: #555555;"> by Creative TechTians</span></a>
       <nav>
         {% if session.get('user_id') %}
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
-        <a href="{{ url_for('profile') }}">Profile</a>
-        <a href="{{ url_for('scan') }}">Scan</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a href="{{ url_for('scan') }}">Scan</a>
+          <a href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('community') }}">Community</a>
+          <span>
+            Logged in as <strong>{{ get_user_by_id(session.get('user_id')).username }}</strong>
+            &nbsp;|&nbsp; <a href="{{ url_for('logout') }}">Logout</a>
+          </span>
         {% else %}
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('signup') }}">Sign up</a>
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('signup') }}">Sign up</a>
         {% endif %}
       </nav>
     </div>
   </header>
 
+  <!-- Main Content -->
   <main class="container">
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="foot">
-    <div class="container">Made with ❤️ — Allergen label scanner (starter)</div>
-  </footer>
+  <div class="container team-footer" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;">
+
+    <!-- Team Member 1 -->
+    <div style="background: #fff; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px;">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQGQKaB7ITZKKw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724040961971?e=1759968000&v=beta&t=3MKA2kRGb3bSp6u1aN_236dR4qnscTLZf8Vim57t3Lw" 
+           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <div style="margin-top: 15px; font-weight: bold;">
+        Nafees Hossain<br><span style="color:#555555; font-weight: normal;">Team Lead & Developer</span>
+      </div>
+    </div>
+
+    <!-- Team Member 2 -->
+    <div style="background: #fff; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px;">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQHth2rx_E-uaQ/profile-displayphoto-shrink_400_400/B56ZUsIMOhGoAg-/0/1740202100959?e=1759968000&v=beta&t=xdw40DCPjYUSNTs30LThMl_KX1lCqljrOzQ1UNNpc3o" 
+           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <div style="margin-top: 15px; font-weight: bold;">
+        Dhritiman Bera<br><span style="color:#555555; font-weight: normal;">QA & Full Stack</span>
+      </div>
+    </div>
+
+    <!-- Team Member 3 -->
+    <div style="background: #fff; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px;">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQGy9bnpCqCl4A/profile-displayphoto-scale_400_400/B56ZhLdcarH0Ag-/0/1753612667799?e=1759968000&v=beta&t=jSj3K7XiHGuxHoVZMTwyyey-B8KDxUGpEXWNvBZ43TA" 
+           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <div style="margin-top: 15px; font-weight: bold;">
+        Souvik Chel<br><span style="color:#555555; font-weight: normal;">Backend & Deployment</span>
+      </div>
+    </div>
+
+    <!-- Team Member 4 -->
+    <div style="background: #fff; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px;">
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQFZhoX56EhBPQ/profile-displayphoto-scale_400_400/B4DZj_Epg3H0Ag-/0/1756626069185?e=1759968000&v=beta&t=jS1Z7gRVks0TEV6-0cif0Eft0DKJicoQijW4pUJb5Co" 
+           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+      <div style="margin-top: 15px; font-weight: bold;">
+        Suvrajit Patari<br><span style="color:#555555; font-weight: normal;">Designer & Deployment</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
 </body>
 </html>

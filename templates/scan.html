@@ -1,20 +1,92 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Scan a product label</h2>
+<div style="display:flex; justify-content:center; align-items:flex-start; padding:30px;">
+  <div style="max-width:700px; width:100%;">
 
-<div class="card">
-  <p>Upload an image (or use mobile camera). We'll OCR the ingredients and compare them with your allergies.</p>
+    <div style="background:#fff; padding:30px; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.1);">
+      <h2 style="margin-bottom:15px; text-align:center; color:#333;">📸 Scan a Product Label</h2>
+      <p style="text-align:center; color:#555; margin-bottom:25px;">
+        Choose one of the options below to check ingredients against your allergy list.
+      </p>
 
-  <form id="scanForm">
-    <input id="imageInput" name="image" type="file" accept="image/*" capture="environment" />
-    <div style="margin-top:10px">
-      <button id="scanBtn" class="btn" type="button">Scan</button>
+      <!-- Upload Image -->
+      <div style="margin-bottom:25px; padding:20px; border:1px solid #eee; border-radius:12px; background:#fdfdfd;">
+        <h3 style="margin-bottom:10px; color:#333;">🖼 Upload Ingredient Image</h3>
+        <input id="imageInput" name="image" type="file" accept="image/*"
+               style="display:block; margin:10px auto; padding:10px; border:1px solid #ccc; border-radius:10px; font-size:14px; background:#fafafa;" />
+        <button id="scanBtn" type="button"
+                style="margin-top:12px; padding:10px 16px; border:none; border-radius:10px; background:#4CAF50; color:#fff; font-weight:600; cursor:pointer;">
+          🚀 Scan Ingredients
+        </button>
+      </div>
+
+      <!-- Live Camera OCR -->
+      <div style="margin-bottom:25px; padding:20px; border:1px solid #eee; border-radius:12px; background:#fdfdfd;">
+        <h3 style="margin-bottom:10px; color:#333;">📷 Use Camera</h3>
+        <video id="camera" autoplay playsinline
+               style="width:100%; max-width:400px; border:1px solid #ccc; border-radius:10px; background:#000;"></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <div style="margin-top:12px;">
+          <button id="captureBtn" type="button"
+                  style="padding:10px 16px; border:none; border-radius:10px; background:#2196F3; color:#fff; font-weight:600; cursor:pointer;">
+            📸 Capture
+          </button>
+        </div>
+      </div>
+
+      <!-- Barcode Scanner -->
+      <div style="margin-bottom:25px; padding:20px; border:1px solid #eee; border-radius:12px; background:#fdfdfd;">
+        <h3 style="margin-bottom:12px; color:#333;">📦 Scan Product Barcode</h3>
+        <p style="color:#666; font-size:14px; margin-bottom:15px;">
+          Point your camera at the barcode. We'll auto-detect it.
+        </p>
+
+        <div id="barcodeScanner" style="
+     width:100%;
+     max-width:400px;
+     height:300px;
+     border:1px solid #ccc;
+     margin:auto;
+     overflow:hidden;
+     position:relative;
+    "></div>
+
+
+        <div style="margin-top:15px;">
+          <button id="startBarcodeScan" type="button"
+                  style="padding:10px 18px; border:none; border-radius:8px; background:#4CAF50; color:white; font-weight:600; cursor:pointer;">
+            ▶️ Start Scan
+          </button>
+          <button id="stopBarcodeScan" type="button"
+                  style="padding:10px 18px; margin-left:10px; border:none; border-radius:8px; background:#f44336; color:white; font-weight:600; cursor:pointer; display:none;">
+            ⏹ Stop Scan
+          </button>
+        </div>
+
+        <div id="barcodeResultBox" style="margin-top:15px; display:none;">
+          <span style="background:#e0f7fa; color:#006064; padding:6px 12px; border-radius:8px; font-weight:600; font-size:15px;">
+            Detected: <span id="barcodeResult"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div style="margin-top:30px;">
+        <h3 style="margin-bottom:10px; color:#333;">✅ Scan Results</h3>
+        <div id="result" style="margin-top:12px; padding:12px; background:#f9f9f9; border-radius:10px; border:1px solid #eee; min-height:40px;"></div>
+      </div>
+
+      <!-- Raw OCR Output -->
+      <div style="margin-top:30px;">
+        <h3 style="margin-bottom:10px; color:#333;">🧾 Extracted Ingredients</h3>
+        <pre id="raw" style="white-space:pre-wrap; margin-top:8px; background:#f7f7f7; padding:12px; border-radius:10px; border:1px solid #ddd; font-size:14px; line-height:1.5; max-height:250px; overflow:auto;"></pre>
+      </div>
     </div>
-  </form>
 
-  <div id="result" style="margin-top:12px;"></div>
-  <pre id="raw" style="white-space:pre-wrap;margin-top:8px;background:#f7f7f7;padding:8px;border-radius:6px;"></pre>
+  </div>
 </div>
 
+<!-- Barcode Library -->
+<script src="https://unpkg.com/quagga/dist/quagga.min.js"></script>
 <script src="{{ url_for('static', filename='scan.js') }}"></script>
 {% endblock %}

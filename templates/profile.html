@@ -1,17 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Edit profile - Allergies</h2>
-<form method="post" class="card form">
-  <fieldset>
-    <legend>Select allergens you want alerts for</legend>
-    {% for key, kws in allergens.items() %}
-      <label class="chk">
-        <input type="checkbox" name="allergies" value="{{key}}"
-          {% if key in user_allergies %}checked{% endif %}>
-        {{ display.get(key, key) }}
-      </label>
-    {% endfor %}
-  </fieldset>
-  <button class="btn">Save</button>
-</form>
+<div style="display:flex; justify-content:center; align-items:flex-start; padding:30px;">
+  <div style="max-width:900px; width:100%;">
+
+    <!-- Profile Card -->
+    <div style="background:#fff; padding:30px; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.1); margin-bottom:30px;">
+      <h2 style="margin-bottom:15px; color:#333;">👤 Profile</h2>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+
+      <form method="post" style="margin-top:20px;">
+        <label style="font-weight:600; color:#444;">Known allergies (comma-separated):</label>
+        <input type="text" name="allergies" value="{{ user_allergies | join(', ') }}" 
+               style="width:100%; padding:10px 12px; margin-top:8px; border:1px solid #ccc; border-radius:8px; font-size:14px;" />
+        <div style="margin-top:14px;">
+          <button type="submit" style="padding:12px 20px; border:none; border-radius:10px; background:#4CAF50; color:#fff; font-weight:600; cursor:pointer;">
+            Save Allergies
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Scan History -->
+    <div style="background:#fff; padding:30px; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.1); margin-bottom:30px;">
+      <h3 style="margin-bottom:15px; color:#333;">📜 Your Scan History</h3>
+      <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <thead style="background:#f5f5f5;">
+          <tr>
+            <th style="text-align:left; padding:10px;">Time</th>
+            <th style="text-align:left; padding:10px;">Product</th>
+            <th style="text-align:left; padding:10px;">Detected Allergens</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for s in history %}
+          <tr>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ s.timestamp }}</td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ s.product_name }}</td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ s.detected_allergens }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="3" style="padding:12px; text-align:center; color:#888;">No scan history yet.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Feedback -->
+    <div style="background:#fff; padding:30px; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.1);">
+      <h3 style="margin-bottom:15px; color:#333;">💬 Your Feedback</h3>
+      <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <thead style="background:#f5f5f5;">
+          <tr>
+            <th style="text-align:left; padding:10px;">Time</th>
+            <th style="text-align:left; padding:10px;">Product</th>
+            <th style="text-align:left; padding:10px;">Reaction</th>
+            <th style="text-align:left; padding:10px;">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for f in feedback %}
+          <tr>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ f.timestamp }}</td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ f.product_name }}</td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ f.reaction }}</td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">{{ f.notes }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="4" style="padding:12px; text-align:center; color:#888;">No feedback yet.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
 {% endblock %}

@@ -1,17 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Welcome, {{ username }}</h2>
-<p>Your selected allergies:</p>
-<ul>
-  {% if allergies %}
-    {% for a in allergies %}
-      <li>{{ display.get(a, a) }}</li>
-    {% endfor %}
-  {% else %}
-    <li><em>None selected</em></li>
-  {% endif %}
-</ul>
+<div style="display:flex; justify-content:center; align-items:center; min-height:80vh; padding:20px;">
+  <div style="max-width:650px; width:100%; padding:40px; background:#fff; border-radius:20px; box-shadow:0 6px 18px rgba(0,0,0,0.1); text-align:center;">
 
-<p><a class="btn" href="{{ url_for('scan') }}">Scan a food label</a>
-<a class="btn ghost" href="{{ url_for('profile') }}">Edit profile</a></p>
+    <h2 style="font-size:1.8rem; margin-bottom:10px;">
+      👋 Welcome, <span style="color:#4CAF50; font-weight:700;">{{ full_name or username }}</span>
+    </h2>
+    <p style="color:#666; margin-bottom:20px;">Here are your selected allergies:</p>
+
+    <div style="margin:20px 0;">
+      {% if allergies %}
+        {% for a in allergies %}
+          <span style="display:inline-block; background:#e8f5e9; color:#2e7d32; padding:8px 16px; border-radius:20px; margin:6px; font-size:14px; font-weight:500;">
+            {{ display.get(a, a) }}
+          </span>
+        {% endfor %}
+      {% else %}
+        <div style="margin:20px 0; padding:20px; background:#fafafa; border:2px dashed #ccc; border-radius:12px;">
+          <p style="margin-bottom:10px;">No allergies selected yet.</p>
+          <a href="{{ url_for('profile') }}" style="display:inline-block; padding:10px 16px; border-radius:10px; background:#f1f1f1; color:#333; text-decoration:none; font-weight:600;">+ Add Allergies</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div style="margin-top:30px;">
+      <a href="{{ url_for('scan') }}" style="display:inline-block; padding:12px 20px; border-radius:10px; font-weight:600; margin:6px; text-decoration:none; background:#4CAF50; color:#fff;">📷 Scan a food label</a>
+      <a href="{{ url_for('profile') }}" style="display:inline-block; padding:12px 20px; border-radius:10px; font-weight:600; margin:6px; text-decoration:none; background:#f1f1f1; color:#333;">✏️ Edit profile</a>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
