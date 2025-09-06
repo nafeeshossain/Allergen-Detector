@@ -1,0 +1,15 @@
+/* basic styling */
+body { font-family: Inter, system-ui, Arial; background:#f3f4f6; margin:0; color:#111827; }
+.container { max-width:900px; margin:24px auto; padding:0 16px; }
+.topbar { background:#0f172a; color:white; padding:12px 0; }
+.topbar .container { display:flex; align-items:center; justify-content:space-between; }
+.brand { color:white; text-decoration:none; font-weight:700; font-size:18px; }
+nav a { color:#cbd5e1; margin-left:10px; text-decoration:none; }
+.card { background:white; padding:16px; border-radius:8px; box-shadow:0 6px 18px rgba(2,6,23,0.06); }
+.form label { display:block; margin:8px 0; }
+input[type=text], input[type=password], input[type=file] { width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:6px; }
+.btn { background:#0ea5a4; color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+.btn.ghost { background:transparent; border:1px solid #94a3b8; color:#0f172a; }
+.chk { display:block; margin:6px 0; }
+.error { color:#dc2626; }
+.foot { margin-top:30px; padding:12px 0; text-align:center; color:#6b7280; }

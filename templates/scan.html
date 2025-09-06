@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Scan a product label</h2>
+
+<div class="card">
+  <p>Upload an image (or use mobile camera). We'll OCR the ingredients and compare them with your allergies.</p>
+
+  <form id="scanForm">
+    <input id="imageInput" name="image" type="file" accept="image/*" capture="environment" />
+    <div style="margin-top:10px">
+      <button id="scanBtn" class="btn" type="button">Scan</button>
+    </div>
+  </form>
+
+  <div id="result" style="margin-top:12px;"></div>
+  <pre id="raw" style="white-space:pre-wrap;margin-top:8px;background:#f7f7f7;padding:8px;border-radius:6px;"></pre>
+</div>
+
+<script src="{{ url_for('static', filename='scan.js') }}"></script>
+{% endblock %}

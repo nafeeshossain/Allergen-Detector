@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ username }}</h2>
+<p>Your selected allergies:</p>
+<ul>
+  {% if allergies %}
+    {% for a in allergies %}
+      <li>{{ display.get(a, a) }}</li>
+    {% endfor %}
+  {% else %}
+    <li><em>None selected</em></li>
+  {% endif %}
+</ul>
+
+<p><a class="btn" href="{{ url_for('scan') }}">Scan a food label</a>
+<a class="btn ghost" href="{{ url_for('profile') }}">Edit profile</a></p>
+{% endblock %}

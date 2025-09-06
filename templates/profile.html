@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit profile - Allergies</h2>
+<form method="post" class="card form">
+  <fieldset>
+    <legend>Select allergens you want alerts for</legend>
+    {% for key, kws in allergens.items() %}
+      <label class="chk">
+        <input type="checkbox" name="allergies" value="{{key}}"
+          {% if key in user_allergies %}checked{% endif %}>
+        {{ display.get(key, key) }}
+      </label>
+    {% endfor %}
+  </fieldset>
+  <button class="btn">Save</button>
+</form>
+{% endblock %}

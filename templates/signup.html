@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Sign up</h2>
+<form method="post" class="card form">
+  <label>Username <input name="username" required></label>
+  <label>Full name <input name="full_name"></label>
+  <label>Password <input name="password" type="password" required></label>
+
+  <fieldset>
+    <legend>Tell us your allergies (predefined)</legend>
+    {% for key, kws in allergens.items() %}
+      <label class="chk"><input type="checkbox" name="allergies" value="{{key}}"> {{ DISPLAY_NAME[key] if key in DISPLAY_NAME else key }}</label>
+    {% endfor %}
+  </fieldset>
+
+  <button class="btn">Create account</button>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+</form>
+<p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+{% endblock %}
