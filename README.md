@@ -1,11 +1,51 @@
-# Allergen-Detector
+# 🌟 Allergen Scanner by Creative Techtians  
 
-Personalized Allergen Detection Using AI Based Food Label Analysis
+🚀 A web-based **AI-powered allergen detection and ingredient analysis platform** built by **Creative Techtians**.  
+The application allows users to scan food product labels (via images/QR codes), detect allergens based on a personal allergy profile, and get smart recommendations for safe food consumption.  
 
-## 🚀 Features
+This repository also includes a **Team Showcase Footer** component that highlights the contributors with a modern card design.  
 
-- Upload food label image (JPG/PNG)
-- Extracts text using EasyOCR
-- Compares detected ingredients with an allergen dataset
-- Trains a Logistic Regression model to predict allergy risk
-- Simple, accessible Streamlit UI
+---
+
+## 📌 Features  
+
+### 🔍 Core Features  
+- 📷 **OCR-based Scanning** – Extract text from food labels using **Tesseract OCR**.  
+- 🧾 **Ingredient Parsing** – Match scanned ingredients with user’s allergen profile stored in **SQLite database**.  
+- ⚡ **Instant Detection** – Alerts if allergens are present.  
+- 🧠 **AI Enhancement (optional)** – Uses AI models (Gemini/GPT) for ingredient risk classification & health recommendations.  
+
+### 🎨 UI Features  
+- 💻 **Responsive Web Interface** using **Flask + HTML + CSS + JS**.  
+- 🖼️ **Profile Footer Section** – Showcases the development team with circular profile images and role descriptions.  
+- 🌐 **Simple Deployment** – Runs on **Vercel (frontend)** and **Flask backend**.  
+
+---
+
+## 🛠️ Tech Stack  
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | HTML, CSS (Poppins font), JavaScript |
+| Backend | Python (Flask) |
+| Database | SQLite |
+| AI/ML | Tesseract OCR, Gemini API (optional for advanced recommendations) |
+| Deployment | Vercel (Frontend), Flask Hosting (Backend) |
+
+---
+
+## 📂 Project Structure  
+
+```bash
+allergen-scanner/
+│── app.py               # Flask backend
+│── static/
+│   ├── style.css        # CSS styling
+│   ├── scan.js          # Frontend scanning logic
+│── templates/
+│   ├── index.html       # Homepage UI
+│   ├── dashboard.html   # User dashboard
+│   ├── footer.html      # Team showcase footer component
+│── database.db          # SQLite database (user profiles & allergens)
+│── README.md            # Project documentation
+
