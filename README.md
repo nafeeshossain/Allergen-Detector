@@ -67,3 +67,10 @@ allergen-scanner/
 │   ├── footer.html      # Team showcase footer
 │── database.db          # SQLite database
 │── README.md            # Project documentation
+
+<p align="center">
+  <img src="Screenshots/logo.png" width="200" alt="Creative Techtians Logo"/>
+</p>
+
+<p align="center">🔥 Eat Smart. Live Safe. Built with ❤️ by <b>Creative Techtians</b></p>
+
