@@ -6,6 +6,11 @@ The application allows users to scan food product labels (via images/QR codes), 
 This repository also includes a **Team Showcase Footer** component that highlights the contributors with a modern card design.  
 
 ---
+## Screenshot 
+
+<p align="center">
+  <img src="Screenshots/screenshot.gif" width="500"/>
+</p>
 
 ## 📌 Features  
 
