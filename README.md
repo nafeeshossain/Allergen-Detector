@@ -1,41 +1,55 @@
 # 🌟 Allergen Scanner by Creative Techtians  
 
-🚀 A web-based **AI-powered allergen detection and ingredient analysis platform** built by **Creative Techtians**.  
-The application allows users to scan food product labels (via images/QR codes), detect allergens based on a personal allergy profile, and get smart recommendations for safe food consumption.  
-
-This repository also includes a **Team Showcase Footer** component that highlights the contributors with a modern card design.  
+🚀 A modern **AI-powered allergen detection & ingredient analysis platform** built by **Creative Techtians**.  
+This web application allows users to **scan food labels (via image/QR code)**, detect allergens from their **personal health profile**, and receive **smart food recommendations** for safe consumption.  
 
 ---
-## Screenshot 
+
+## 📸 Demo Screenshot  
 
 <p align="center">
   <img src="Screenshots/screenshot.gif" width="500"/>
 </p>
 
-## 📌 Features  
+---
 
-### 🔍 Core Features  
-- 📷 **OCR-based Scanning** – Extract text from food labels using **Tesseract OCR**.  
-- 🧾 **Ingredient Parsing** – Match scanned ingredients with user’s allergen profile stored in **SQLite database**.  
-- ⚡ **Instant Detection** – Alerts if allergens are present.  
-- 🧠 **AI Enhancement (optional)** – Uses AI models (Gemini/GPT) for ingredient risk classification & health recommendations.  
+## ⚡ Features  
 
-### 🎨 UI Features  
-- 💻 **Responsive Web Interface** using **Flask + HTML + CSS + JS**.  
-- 🖼️ **Profile Footer Section** – Showcases the development team with circular profile images and role descriptions.  
-- 🌐 **Simple Deployment** – Runs on **Vercel (frontend)** and **Flask backend**.  
+### 🔍 Core Functionalities  
+- 📷 **OCR Scanning** – Extract ingredients from labels using **Tesseract OCR**  
+- 🧾 **Ingredient Parsing** – Compare with personalized **allergen database (SQLite)**  
+- ⚡ **Real-Time Alerts** – Instantly notify users if allergens are detected  
+- 🧠 **AI Assistance** – (Optional) Enhance results with **Gemini/GPT** for health insights  
+
+### 🎨 UI & UX  
+- 💻 **Responsive Web Interface** (Flask + HTML + CSS + JS)  
+- 🎭 **Team Showcase Footer** – Modern circular profile cards for contributors  
+- 🌐 **Deployment Ready** – Works with **Vercel (Frontend)** & **Flask Backend**  
 
 ---
 
 ## 🛠️ Tech Stack  
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | HTML, CSS (Poppins font), JavaScript |
-| Backend | Python (Flask) |
-| Database | SQLite |
-| AI/ML | Tesseract OCR, Gemini API (optional for advanced recommendations) |
-| Deployment | Vercel (Frontend), Flask Hosting (Backend) |
+| Layer       | Technology |
+|-------------|------------|
+| **Frontend** | HTML, CSS (Poppins), JavaScript |
+| **Backend** | Python (Flask) |
+| **Database** | SQLite |
+| **AI/ML**   | Tesseract OCR, Gemini API (optional) |
+| **Deployment** | Vercel + Flask Hosting |
+
+---
+
+## 👨‍💻 Meet the Team – Creative Techtians  
+
+We’re a passionate crew of developers and innovators ✨ who believe in **making food safety smarter with AI**.  
+
+| Member | Role | Superpower 🚀 |
+|--------|------|---------------|
+| **Nafees Hossain** | 💡 Developer & Team Lead | Full-stack wizard, project architect, always shipping cool features |
+| **Souvik Chel** | 🧪 Tester & Frontend Developer | Bug buster + pixel-perfect UI design |
+| **Dhritiman Bera** | ⚙️ Backend & Database Engineer | API master + SQLite guru |
+| **Tanvi Jesmi** | 🎨 UI/UX Designer | Creates clean, modern, user-friendly interfaces |
 
 ---
 
@@ -48,9 +62,8 @@ allergen-scanner/
 │   ├── style.css        # CSS styling
 │   ├── scan.js          # Frontend scanning logic
 │── templates/
-│   ├── index.html       # Homepage UI
+│   ├── index.html       # Homepage
 │   ├── dashboard.html   # User dashboard
-│   ├── footer.html      # Team showcase footer component
-│── database.db          # SQLite database (user profiles & allergens)
+│   ├── footer.html      # Team showcase footer
+│── database.db          # SQLite database
 │── README.md            # Project documentation
-
