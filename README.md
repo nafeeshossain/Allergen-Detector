@@ -34,7 +34,7 @@ This web application allows users to **scan food labels (via image/QR code)**, d
 |-------------|------------|
 | **Frontend** | HTML, CSS (Poppins), JavaScript |
 | **Backend** | Python (Flask) |
-| **Database** | SQLite |
+| **Database** | SQLite, PostgreSQL |
 | **AI/ML**   | Tesseract OCR, Gemini API (optional) |
 | **Deployment** | Vercel + Flask Hosting |
 
