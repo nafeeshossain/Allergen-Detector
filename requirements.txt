@@ -4,4 +4,3 @@ pillow
 pytesseract
 werkzeug
 psycopg2-binary
-SQLAlchemy>=2.0
