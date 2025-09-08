@@ -62,7 +62,7 @@ allergen-scanner/
 │   ├── style.css        # CSS styling
 │   ├── scan.js          # Frontend scanning logic
 │── templates/
-│   ├── index.html       # Homepage
+│   ├── base.html        # Homepage
 │   ├── dashboard.html   # User dashboard
 │   ├── footer.html      # Team showcase footer
 │── database.db          # SQLite database
