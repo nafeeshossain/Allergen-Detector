@@ -20,19 +20,21 @@
         </button>
       </div>
 
-      <!-- Live Camera OCR -->
-      <div style="margin-bottom:25px; padding:20px; border:1px solid #eee; border-radius:12px; background:#fdfdfd;">
-        <h3 style="margin-bottom:10px; color:#333;">📷 Use Camera</h3>
-        <video id="camera" autoplay playsinline
-               style="width:100%; max-width:400px; border:1px solid #ccc; border-radius:10px; background:#000;"></video>
-        <canvas id="canvas" style="display:none;"></canvas>
-        <div style="margin-top:12px;">
-          <button id="captureBtn" type="button"
-                  style="padding:10px 16px; border:none; border-radius:10px; background:#2196F3; color:#fff; font-weight:600; cursor:pointer;">
-            📸 Capture
-          </button>
-        </div>
-      </div>
+     <div style="margin-bottom: 25px; padding: 20px; border: 1px solid #eee; border-radius: 12px; background: #fdfdfd;">
+  <h3 style="margin-bottom: 10px; color: #333;">📷 Use Camera</h3>
+  
+  <video id="camera" autoplay playsinline style="width: 100%; max-width: 400px; border: 1px solid #ccc; border-radius: 10px; background: #000;"></video>
+  <canvas id="canvas" style="display: none;"></canvas>
+  
+  <div style="margin-top: 12px;">
+    <button id="captureBtn" type="button" style="padding: 10px 16px; border: none; border-radius: 10px; background: #2196F3; color: #fff; font-weight: 600; cursor: pointer;">
+      📸 Capture
+    </button>
+    <button id="scanCapturedBtn" type="button" style="padding: 10px 16px; margin-left: 10px; border: none; border-radius: 10px; background: #4CAF50; color: #fff; font-weight: 600; cursor: pointer; display: none;">
+      🚀 Scan Captured Image
+    </button>
+  </div>
+</div>
 
       <!-- Barcode Scanner -->
       <div style="margin-bottom:25px; padding:20px; border:1px solid #eee; border-radius:12px; background:#fdfdfd;">
@@ -69,6 +71,7 @@
           </span>
         </div>
       </div>
+      
 
       <!-- Results Section -->
       <div style="margin-top:30px;">
